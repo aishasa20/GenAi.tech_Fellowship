@@ -1,0 +1,18 @@
+import matplotlib.pyplot as plt
+import mpl_toolkits.mplot3d as Axes3D
+import numpy as np
+
+plt.rcParams["lines.linewidth"] = 0.5
+
+# Create a 3D plot
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+X, Y = np.mgrid[-3:5:100j, -3:5:100j] # create a grid of X, Y values
+Z = np.exp(-(abs(X)**2 + abs(Y)**2)) +  0.8 * np.exp(-4 * ((abs(X - 1.5))**4.2 + (abs(Y - 1.4))**4.2)) # create a grid of Z values using gaussian functions
+
+ax.plot_surface(X, Y, Z, cmap='magma', rstride=1, cstride=1, alpha=0.5) # plot the surface
+ax.contour(X, Y, Z, levels=60, linestyles="solid", alpha=0.9, antialiased=True) # plot the contour
+
+plt.show()
+plt.savefig('matplotlib_contour3d.png', dpi=300)
